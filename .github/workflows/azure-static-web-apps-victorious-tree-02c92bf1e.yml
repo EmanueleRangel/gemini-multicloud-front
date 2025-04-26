@@ -19,6 +19,20 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Ou a versão que você está usando no projeto
+
+      - name: Install dependencies
+        run: |
+          npm install
+          
+      - name: Build the project
+        run: |
+          npm run build   # Este comando pode variar dependendo do seu framework
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -27,12 +41,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # Local onde está o front
-          api_location: "api" # Se você usar API separada, senão pode remover
-          output_location: "dist" # Local que o build vai gerar (depende da ferramenta que está usando, como Vite)
+          app_location: "/"               # Local onde está o front, raiz do seu projeto
+          api_location: "api"             # Remova se você não estiver usando API
+          output_location: "dist"         # Altere para o diretório de saída gerado após o build (exemplo: dist ou build)
           ###### End of Repository/Build Configurations ######
-
+          
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
