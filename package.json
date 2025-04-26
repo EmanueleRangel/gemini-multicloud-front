@@ -1,0 +1,17 @@
+{
+  "name": "gemini-multicloud-front",
+  "version": "1.0.0",
+  "description": "Front-end do projeto Gemini Multicloud",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
